@@ -17,14 +17,14 @@ class TaskController extends Controller
         return view('tasks.index',compact('tasks'));
     }
 
-    public function create()
+    public function create(): Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
         $projects = Project::all();
 
         return view('tasks.create',compact('projects'));
     }
 
-    public function store(StoreTaskRequest $request)
+    public function store(StoreTaskRequest $request): \Illuminate\Http\RedirectResponse
     {
         Task::create([
             'name'=>$request->name,
@@ -40,14 +40,14 @@ class TaskController extends Controller
         //
     }
 
-    public function edit(Task $task)
+    public function edit(Task $task): Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
         $projects = Project::all();
 
         return view('tasks.edit',compact('task','projects'));
     }
 
-    public function update(Request $request, Task $task)
+    public function update(Request $request, Task $task): \Illuminate\Http\RedirectResponse
     {
         $task->update([
             'name'=>$request->name,
@@ -58,7 +58,7 @@ class TaskController extends Controller
         return redirect()->route('tasks.index');
     }
 
-    public function destroy(Task $task)
+    public function destroy(Task $task): \Illuminate\Http\RedirectResponse
     {
         $task->delete();
         return redirect()->route('tasks.index');
