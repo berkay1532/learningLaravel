@@ -26,7 +26,6 @@
                             <form method="POST" action="{{route('projects.destroy', $project)}}">
                                 @csrf
                                 @method('DELETE')
-
                                 <button type="submit" onclick="return confirm('Are You Sure?')">Delete</button>
                             </form>
                             </td>

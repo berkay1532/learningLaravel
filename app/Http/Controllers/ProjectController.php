@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -19,13 +20,13 @@ class ProjectController extends Controller
         return view('projects.create');
     }
 
-    public function store(Request $request): \Illuminate\Http\RedirectResponse
+    public function store(Request $request): JsonResponse
     {
         Project::create([
             'project_name' => $request->project_name
         ]);
 
-        return redirect()->route('projects.index');
+        return response()->json('succes',201);
     }
 
     public function show(Project $project)

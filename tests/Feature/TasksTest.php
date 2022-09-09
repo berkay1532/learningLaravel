@@ -57,5 +57,10 @@ class TasksTest extends TestCase
         $view_projects = $response->viewData('projects');
         $this->assertEquals($project->project_name,$view_projects->first()->project_name);
     }
-
+    public function test_add_project()
+    {
+        $response = $this->post('/projects',['project_name'=>'Project 1']);
+        $response->assertStatus(201);
+        $this->assertDatabaseHas('projects',['project_name'=>'Project 1']);
+    }
 }
